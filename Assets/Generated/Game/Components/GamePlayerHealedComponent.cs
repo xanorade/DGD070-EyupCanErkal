@@ -8,25 +8,25 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly PlayerHealedComponent playerHealedComponent = new PlayerHealedComponent();
+    public PlayerHealedComponent playerHealed { get { return (PlayerHealedComponent)GetComponent(GameComponentsLookup.PlayerHealed); } }
+    public bool hasPlayerHealed { get { return HasComponent(GameComponentsLookup.PlayerHealed); } }
 
-    public bool isPlayerHealed {
-        get { return HasComponent(GameComponentsLookup.PlayerHealed); }
-        set {
-            if (value != isPlayerHealed) {
-                var index = GameComponentsLookup.PlayerHealed;
-                if (value) {
-                    var componentPool = GetComponentPool(index);
-                    var component = componentPool.Count > 0
-                            ? componentPool.Pop()
-                            : playerHealedComponent;
+    public void AddPlayerHealed(float newValue) {
+        var index = GameComponentsLookup.PlayerHealed;
+        var component = (PlayerHealedComponent)CreateComponent(index, typeof(PlayerHealedComponent));
+        component.value = newValue;
+        AddComponent(index, component);
+    }
 
-                    AddComponent(index, component);
-                } else {
-                    RemoveComponent(index);
-                }
-            }
-        }
+    public void ReplacePlayerHealed(float newValue) {
+        var index = GameComponentsLookup.PlayerHealed;
+        var component = (PlayerHealedComponent)CreateComponent(index, typeof(PlayerHealedComponent));
+        component.value = newValue;
+        ReplaceComponent(index, component);
+    }
+
+    public void RemovePlayerHealed() {
+        RemoveComponent(GameComponentsLookup.PlayerHealed);
     }
 }
 

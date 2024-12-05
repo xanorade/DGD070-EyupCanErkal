@@ -5,5 +5,5 @@ using UnityEngine;
 
 public class PlayerHealedComponent : IComponent
 {
-    
+    public float value;
 }
