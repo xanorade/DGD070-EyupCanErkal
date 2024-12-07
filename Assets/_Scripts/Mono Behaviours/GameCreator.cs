@@ -1,16 +1,18 @@
-using Entitas;
 using UnityEngine;
-
 public class GameCreator : MonoBehaviour
-{
-   private GameContext _context;
+{ 
+    private Contexts _contexts;
+    private PlayerHealthFeature _playerHealthFeature;
     void Start()
     {
-       _context = Contexts.sharedInstance.game;
+        _contexts = Contexts.sharedInstance;
+        
+        _playerHealthFeature = new PlayerHealthFeature(_contexts);
        
-       GameEntity entityOne = _context.CreateEntity();
-       entityOne.AddPlayerHealth(500f);
-       
+       _playerHealthFeature.Initialize();
     }
-    
+    private void Update()
+    {
+        _playerHealthFeature.Execute();
+    }
 }
