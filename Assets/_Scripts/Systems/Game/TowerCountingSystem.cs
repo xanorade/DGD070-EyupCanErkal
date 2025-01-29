@@ -1,24 +1,33 @@
+using System.Collections.Generic;
 using Entitas;
-using UnityEngine;
 
-public class TowerCountingSystem : IExecuteSystem
+public class TowerCountingSystem : ReactiveSystem<GameEntity>
 {
     private readonly GameContext _gameContext;
-    private int _numberOfTowers;
-    private bool _allTowersDestroyed;
-
-    public TowerCountingSystem(GameContext gameContext)
+    private readonly int _numberOfTowers;
+    
+    public TowerCountingSystem(Contexts contexts) : base(contexts.game)
     {
-        _gameContext = gameContext;
+        _gameContext = contexts.game;
         _numberOfTowers = ReferenceCatalog.Instance.towerReferences.Length;
     }
 
-    public void Execute()
+    protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
     {
-        GameEntity[] destroyedTowers = _gameContext.GetEntities(GameMatcher.TowerDestroyed);
-        if (destroyedTowers.Length >= _numberOfTowers && !_allTowersDestroyed)
+        return context.CreateCollector(GameMatcher.TowerDestroyed.Added());
+    }
+
+    protected override bool Filter(GameEntity entity)
+    {
+        return entity.isTowerDestroyed;
+    }
+
+    protected override void Execute(List<GameEntity> entities)
+    {
+        int destroyedTowerCount = _gameContext.GetEntities(GameMatcher.TowerDestroyed).Length;
+
+        if (destroyedTowerCount >= _numberOfTowers && !_gameContext.isAllTowersDestroyed)
         {
-            _allTowersDestroyed = true;
             _gameContext.isAllTowersDestroyed = true;
         }
     }
