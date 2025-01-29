@@ -16,9 +16,10 @@ public static class GameComponentsLookup {
     public const int Speed = 5;
     public const int Tower = 6;
     public const int TowerDestroyed = 7;
-    public const int View = 8;
+    public const int TriggerOrder = 8;
+    public const int View = 9;
 
-    public const int TotalComponents = 9;
+    public const int TotalComponents = 10;
 
     public static readonly string[] componentNames = {
         "Alive",
@@ -29,6 +30,7 @@ public static class GameComponentsLookup {
         "Speed",
         "Tower",
         "TowerDestroyed",
+        "TriggerOrder",
         "View"
     };
 
@@ -41,6 +43,7 @@ public static class GameComponentsLookup {
         typeof(SpeedComponent),
         typeof(TowerComponent),
         typeof(TowerDestroyedComponent),
+        typeof(TriggerOrderComponent),
         typeof(ViewComponent)
     };
 }

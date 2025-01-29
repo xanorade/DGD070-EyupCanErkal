@@ -20,10 +20,10 @@ public class TowerInitializationSystem : IInitializeSystem
         {
             GameEntity tower = _gameContext.CreateEntity();
             tower.isTower = true;
-            
             tower.AddView(catalog.towerReferences[i]);
             catalog.towerReferences[i].Link(tower);
+
+            tower.AddTriggerOrder(i + 1);
         }
     }
-    
 }
