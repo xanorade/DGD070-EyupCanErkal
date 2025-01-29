@@ -24,6 +24,9 @@ public class WinDetectionSystem : ReactiveSystem<GameEntity>
 
     protected override void Execute(List<GameEntity> entities)
     {
+        GameEntity player = _gameContext.playerEntity;
+        //player.Destroy();
         ReferenceCatalog.Instance.winScreen.SetActive(true);
+        
     }
 }

@@ -19,12 +19,7 @@ public class FirstLevelUIC : MonoBehaviour
         GameEntity player = _gameContext.playerEntity;
         player.isAlive = true;
     }
-
-    public void BackButtonClick()
-    {
-        SceneManager.LoadScene("Title Screen");
-    }
-
+    
     public void ExitButtonClick()
     {
         Application.Quit();

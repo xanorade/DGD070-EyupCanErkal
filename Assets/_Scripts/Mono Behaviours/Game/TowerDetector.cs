@@ -24,8 +24,15 @@ public class TowerDetector : MonoBehaviour
     private void HandleEntity()
     {
         _link = GetComponent<EntityLink>();
-        GameEntity towerEntity = _link.entity as GameEntity;
-        towerEntity.isTowerDestroyed = true;
+        if (_link != null)
+        {
+            GameEntity towerEntity = _link.entity as GameEntity;
+            if (towerEntity != null)
+            {
+                towerEntity.isTowerDestroyed = true;
+                _link.Unlink();
+            }
+        }
     }
 
     private void HandleMaterial()

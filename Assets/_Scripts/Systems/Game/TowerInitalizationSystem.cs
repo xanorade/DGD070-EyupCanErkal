@@ -25,4 +25,5 @@ public class TowerInitializationSystem : IInitializeSystem
             catalog.towerReferences[i].Link(tower);
         }
     }
+    
 }

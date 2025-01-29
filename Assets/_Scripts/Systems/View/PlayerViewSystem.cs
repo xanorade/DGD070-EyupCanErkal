@@ -32,6 +32,12 @@ public class PlayerViewSystem : ReactiveSystem<GameEntity>
             
             player.AddView(playerObject);
             playerObject.Link(player);
+            
+            if (!player.isPlayer)
+            {
+                playerObject.Unlink();
+                Destroy(playerObject);
+            }
         }
     }
 }
