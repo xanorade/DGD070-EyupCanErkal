@@ -1,3 +1,4 @@
+using System.Collections;
 using Entitas;
 using Entitas.Unity;
 using UnityEngine;
@@ -40,5 +41,24 @@ public class TowerDetector : MonoBehaviour
     private void HandleMaterial()
     {
         _meshRenderer.material = _triggeredMaterial;
+        StartCoroutine(MoveDown());
+    }
+
+    private IEnumerator MoveDown()
+    {
+        Vector3 startPos = transform.position;
+        Vector3 targetPos = new Vector3(startPos.x, -8f, startPos.z);
+    
+        float duration = 1f; 
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            transform.position = Vector3.Lerp(startPos, targetPos, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = targetPos;
     }
 }
