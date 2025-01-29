@@ -24,4 +24,9 @@ public class FirstLevelUIC : MonoBehaviour
     {
         SceneManager.LoadScene("Title Screen");
     }
+
+    public void ExitButtonClick()
+    {
+        Application.Quit();
+    }
 }

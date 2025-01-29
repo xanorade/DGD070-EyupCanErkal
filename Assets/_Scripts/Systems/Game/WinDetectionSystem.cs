@@ -14,16 +14,16 @@ public class WinDetectionSystem : ReactiveSystem<GameEntity>
 
     protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
     {
-        return null;
+        return context.CreateCollector(GameMatcher.AllTowersDestroyed);
     }
 
     protected override bool Filter(GameEntity entity)
     {
-        throw new System.NotImplementedException();
+        return true;
     }
 
     protected override void Execute(List<GameEntity> entities)
     {
-        throw new System.NotImplementedException();
+        ReferenceCatalog.Instance.winScreen.SetActive(true);
     }
 }

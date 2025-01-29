@@ -9,6 +9,6 @@ public class PadInteractionFeature : Feature
 
         Add(new TowerInitializationSystem(_gameContext));
         Add(new TowerCountingSystem(_gameContext));
-        //Add(new WinDetectionSystem(contexts));
+        Add(new WinDetectionSystem(contexts));
     }
 }

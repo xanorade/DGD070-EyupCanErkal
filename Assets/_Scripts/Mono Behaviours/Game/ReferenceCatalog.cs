@@ -8,7 +8,10 @@ public class ReferenceCatalog : MonoBehaviour
     
     [Header("Scene Objects")]
     public GameObject[] towerReferences;
-    
+
+    [Header("UI Elements")]
+    public GameObject winScreen;
+
     public static ReferenceCatalog Instance;
     private void Awake()
     {
