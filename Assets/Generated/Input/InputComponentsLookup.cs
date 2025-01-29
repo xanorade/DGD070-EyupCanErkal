@@ -8,15 +8,21 @@
 //------------------------------------------------------------------------------
 public static class InputComponentsLookup {
 
+    public const int HorizontalInput = 0;
+    public const int PlayerInput = 1;
+    public const int VerticalInput = 2;
 
-
-    public const int TotalComponents = 0;
+    public const int TotalComponents = 3;
 
     public static readonly string[] componentNames = {
-
+        "HorizontalInput",
+        "PlayerInput",
+        "VerticalInput"
     };
 
     public static readonly System.Type[] componentTypes = {
-
+        typeof(HorizontalInputComponent),
+        typeof(PlayerInputComponent),
+        typeof(VerticalInputComponent)
     };
 }

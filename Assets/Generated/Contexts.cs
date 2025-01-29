@@ -21,18 +21,14 @@ public partial class Contexts : Entitas.IContexts {
 
     static Contexts _sharedInstance;
 
-    public ConfigContext config { get; set; }
     public GameContext game { get; set; }
-    public GameStateContext gameState { get; set; }
-    public InputContext ınput { get; set; }
+    public InputContext input { get; set; }
 
-    public Entitas.IContext[] allContexts { get { return new Entitas.IContext [] { config, game, gameState, ınput }; } }
+    public Entitas.IContext[] allContexts { get { return new Entitas.IContext [] { game, input }; } }
 
     public Contexts() {
-        config = new ConfigContext();
         game = new GameContext();
-        gameState = new GameStateContext();
-        ınput = new InputContext();
+        input = new InputContext();
 
         var postConstructors = System.Linq.Enumerable.Where(
             GetType().GetMethods(),
@@ -67,10 +63,8 @@ public partial class Contexts {
     [Entitas.CodeGeneration.Attributes.PostConstructor]
     public void InitializeContextObservers() {
         try {
-            CreateContextObserver(config);
             CreateContextObserver(game);
-            CreateContextObserver(gameState);
-            CreateContextObserver(ınput);
+            CreateContextObserver(input);
         } catch(System.Exception e) {
             UnityEngine.Debug.LogError(e);
         }
