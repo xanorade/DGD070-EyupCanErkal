@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class FirstLevelUIC : MonoBehaviour
+public class TutorialUIC : MonoBehaviour
 {
     [SerializeField] private GameObject startButton;
     private GameContext _gameContext;
